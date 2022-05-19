@@ -1,7 +1,7 @@
 # ays-system
 项目简介：爱影视分享平台是一个基本SpringBoot+Vue前后端分离的影视平台，整合了市面上现有的影视功能，个人添加了交友匹配功能，引入了爬虫豆瓣电影。
 
-使用的前端框架：前台前端 Ant Design Vue、后端前端：Vue-Admin-Template
+前端框架：前台前端 Ant Design Vue、后台前端：Vue-Admin-Template
 
 技术描述：SpringBoot、MySQL、MyBatis-Plus、Vue、JWT、Swaager、Redis、ECharts、Vue-Admin-Template
 
