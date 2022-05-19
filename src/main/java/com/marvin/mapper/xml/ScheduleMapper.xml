@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.marvin.mapper.ScheduleMapper">
+    <select id="PageScheduleVo" resultType="com.marvin.bean.vo.ScheduleVo">
+        select m.title as movieTitle,h.name as hallName,
+               s.schedule_start_time,s.schedule_price,
+               s.schedule_remain,s.schedule_status,
+               s.created,s.schedule_id
+        from schedule s inner join movie m on s.movie_id = m.id
+                        inner join hall h on s.hall_id = h.id
+        ${ew.customSqlSegment}
+    </select>
+    <select id="releaseIndexMovie" resultType="com.marvin.bean.vo.ReleaseIndexMovieVo">
+        select m.id,m.title,m.rate,m.cover,s.created,s.schedule_status
+        from movie m inner join schedule s on m.id = s.movie_id
+            ${ew.customSqlSegment}
+    </select>
+    <select id="releaseMovieList" resultType="com.marvin.bean.vo.ReleaseIndexMovieVo">
+        select m.id,m.title,m.rate,m.cover,s.created,s.schedule_status
+        from movie m inner join schedule s on m.id = s.movie_id
+            ${ew.customSqlSegment}
+    </select>
+    <select id="getScheduleByMovieId" resultType="com.marvin.bean.vo.ScheduleVo">
+        select s.schedule_id,s.schedule_start_time,s.schedule_price,h.name as hallName
+               from schedule s inner join hall h on s.hall_id = h.id
+                   ${ew.customSqlSegment}
+    </select>
+</mapper>

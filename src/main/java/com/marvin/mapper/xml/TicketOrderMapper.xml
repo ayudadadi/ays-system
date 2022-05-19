@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.marvin.mapper.TicketOrderMapper">
+
+    <select id="pageOrderVo" resultType="com.marvin.bean.vo.OrderVo">
+        select o.id,o.price,o.pay_time,o.created,o.status,o.seat,
+               m.cover,m.title,h.name,s.schedule_start_time,o.schedule_id
+        from ticket_order o inner join schedule s on s.schedule_id = o.schedule_id
+                            inner join movie m on s.movie_id = m.id
+                            inner join hall h on s.hall_id = h.id
+            ${ew.customSqlSegment}
+    </select>
+    <select id="getOrderListPage" resultType="com.marvin.bean.vo.OrderVo">
+        select o.id,o.price,o.pay_time,o.created,o.status,o.seat,o.updated,
+               m.cover,m.title,h.name,s.schedule_start_time,o.schedule_id,
+               u.nick_name
+        from ticket_order o inner join schedule s on s.schedule_id = o.schedule_id
+                            inner join user u on  u.id = o.user_id
+                            inner join movie m on s.movie_id = m.id
+                            inner join hall h on s.hall_id = h.id
+            ${ew.customSqlSegment}
+    </select>
+    <select id="getChartByMoviePrice" resultType="com.marvin.bean.vo.ChartQuery">
+        select SUM(o.price) as price,m.title
+               from ticket_order o inner join schedule s on s.schedule_id = o.schedule_id
+                                   inner join movie m on s.movie_id = m.id
+               ${ew.customSqlSegment}
+    </select>
+    <select id="getChartTotalPrice" resultType="com.marvin.bean.vo.ChartQuery">
+        select SUM(o.price) as price,DATE(s.schedule_start_time) as time
+        from ticket_order o inner join schedule s on s.schedule_id = o.schedule_id
+            inner join movie m on s.movie_id = m.id
+            ${ew.customSqlSegment}
+    </select>
+</mapper>

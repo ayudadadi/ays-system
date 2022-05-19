@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.marvin.mapper.MovieFriendMapper">
+
+    <select id="pageMatchList" resultType="com.marvin.bean.vo.FriendVo">
+        select u.avatar,u.nick_name,u.age,u.sex,u.hobby,
+               f.first_user_id,f.created,f.content,f.id
+               from movie_friend f inner join user u on f.first_user_id = u.id
+         ${ew.customSqlSegment}
+    </select>
+    <select id="getMatchListById" resultType="com.marvin.bean.vo.FriendVo">
+        select u.avatar,u.nick_name,u.age,u.sex,u.hobby,u.mobile,
+               f.first_user_id,f.created,f.content,f.id,f.status,f.matching_rate,
+               r.nick_name as secondName,r.mobile as secondMobile
+                 from movie_friend f left join user u on f.first_user_id = u.id
+                                     left join user r on f.second_user_id =r.id
+        ${ew.customSqlSegment}
+    </select>
+    <select id="getMatchListPage" resultType="com.marvin.bean.vo.FriendVo">
+        select u.avatar,u.nick_name,u.age,u.sex,u.hobby,u.mobile,
+               f.first_user_id,f.created,f.content,f.id,f.status,f.matching_rate,f.updated,
+               r.nick_name as secondName,r.mobile as secondMobile
+        from movie_friend f left join user u on f.first_user_id = u.id
+                            left join user r on f.second_user_id =r.id
+            ${ew.customSqlSegment}
+    </select>
+</mapper>

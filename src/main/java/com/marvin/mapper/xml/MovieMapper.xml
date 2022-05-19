@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.marvin.mapper.MovieMapper">
+
+    <select id="IndexMovieVo" resultType="com.marvin.bean.vo.IndexMovieVo">
+        select m.id,m.title,m.rate,m.cover,v.play_count
+        from movie m inner join movie_video v on m.id = v.movie_id
+        ${ew.customSqlSegment}
+    </select>
+</mapper>
