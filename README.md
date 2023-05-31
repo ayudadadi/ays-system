@@ -3,7 +3,7 @@
 
 前端框架：前台前端 Ant Design Vue、后台前端：Vue-Admin-Template
 
-技术描述：SpringBoot、MySQL、MyBatis-Plus、Vue、JWT、Swaager、Redis、ECharts、Vue-Admin-Template
+技术描述：SpringCloud、SpringBoot、MySQL、MyBatis-Plus、Vue、JWT、Swaager、Redis、ECharts、Vue-Admin-Template
 
 
 功能：
